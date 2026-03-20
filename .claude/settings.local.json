@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import os; files = os.listdir\\(''.''\\); meta_dirs = [f for f in files if ''Meta'' in f or ''meta'' in f]; print\\(repr\\(meta_dirs\\)\\)\")",
+      "Bash(python3:*)",
+      "Bash(npm create:*)",
+      "Bash(unzip -l \"/Users/leifaitkin/Desktop/Fraction Marketing /brand assets /02 Logos-20260316T174424Z-3-001.zip\")",
+      "Bash(unzip -l \"/Users/leifaitkin/Desktop/Fraction Marketing /brand assets /05 Photography-20260316T175038Z-3-001.zip\")",
+      "Bash(1:*)",
+      "Bash(mkdir -p \"/Users/leifaitkin/Desktop/Meta Landing Page Brokers /public/images\")",
+      "Bash(unzip -j \"/Users/leifaitkin/Desktop/Fraction Marketing /brand assets /02 Logos-20260316T174424Z-3-001.zip\" \"02 Logos/+ Fraction Logos/Primary \\(wordmark\\)/Web/SVG/FRAC-Primary-Green-RGB.svg\" \"02 Logos/+ Fraction Logos/Primary \\(wordmark\\)/Web/SVG/FRAC-Primary-White-RGB.svg\" -d \"/Users/leifaitkin/Desktop/Meta Landing Page Brokers /public/\")",
+      "Bash(unzip:*)",
+      "Bash(npm install:*)",
+      "Bash(find '/Users/leifaitkin/Desktop/Fraction Marketing ' -iname *.png -o -iname *.jpg -o -iname *.jpeg)",
+      "Bash(cp \"/Users/leifaitkin/Desktop/Fraction Marketing /Nicole .png\" \"/Users/leifaitkin/Desktop/Meta Landing Page Brokers /public/images/nicole-nixon.png\")",
+      "Bash(cp \"/Users/leifaitkin/Desktop/Fraction Marketing /T0562PFG4HX-U06P77004TD-b75499b94e1c-512.jpeg\" \"/Users/leifaitkin/Desktop/Meta Landing Page Brokers /public/images/vimal-singh.jpg\")",
+      "Bash(rm larry-white.jpg)",
+      "Bash(mv Larry.png larry-white.png)",
+      "Bash(npx vite:*)",
+      "Bash(open:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
