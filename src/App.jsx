@@ -12,8 +12,8 @@ export default function App() {
       <main>
         <Hero />
         <WhyFraction />
-        <EmailCapture />
         <BDMSection />
+        <EmailCapture />
       </main>
       <Footer />
     </div>
