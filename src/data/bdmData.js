@@ -12,7 +12,7 @@ export const bdms = [
     id: 2,
     name: 'Nicole Nixon',
     region: 'Toronto West',
-    photo: '/images/nicole-nixon.png',
+    photo: '/images/nicole-nixon.jpeg',
     email: 'Nicole@fraction.com',
     phone: '(705) 408-1411',
     bookingUrl: 'https://get.fraction.com/meetings/meet-with-nicole/clone?uuid=47d07754-22d2-4776-8fb4-d5f946f264af',
