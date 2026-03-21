@@ -11,9 +11,9 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <EmailCapture />
         <WhyFraction />
         <BDMSection />
-        <EmailCapture />
       </main>
       <Footer />
     </div>
