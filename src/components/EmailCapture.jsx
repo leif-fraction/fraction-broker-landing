@@ -11,8 +11,17 @@ export default function EmailCapture() {
     e.preventDefault()
     setError('')
 
-    if (!email || !email.includes('@') || !email.includes('.')) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!email || !emailRegex.test(email.trim())) {
       setError('Please enter a valid email address.')
+      return
+    }
+
+    // Block disposable/temporary email domains
+    const disposable = ['mailinator.com','tempmail.com','throwaway.email','guerrillamail.com','yopmail.com','sharklasers.com','guerrillamailblock.com','grr.la','dispostable.com','trashmail.com','10minutemail.com','temp-mail.org','fakeinbox.com','mailnesia.com','maildrop.cc','discard.email']
+    const domain = email.trim().split('@')[1].toLowerCase()
+    if (disposable.includes(domain)) {
+      setError('Please use a real email address.')
       return
     }
 
