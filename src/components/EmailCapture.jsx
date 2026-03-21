@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import { supabase } from '../lib/supabase'
 
 export default function EmailCapture() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -14,9 +16,26 @@ export default function EmailCapture() {
       return
     }
 
-    // TODO: Replace with actual email service (e.g. Mailchimp, SendGrid, HubSpot)
-    console.log('Email submitted:', email)
+    setLoading(true)
+
+    const { error: dbError } = await supabase
+      .from('leads')
+      .insert({ email })
+
+    setLoading(false)
+
+    if (dbError) {
+      setError('Something went wrong. Please try again.')
+      return
+    }
+
     setSubmitted(true)
+
+    // Auto-download the PDF
+    const link = document.createElement('a')
+    link.href = '/Rates-Terms.pdf'
+    link.download = 'Fraction-Rates-Terms.pdf'
+    link.click()
   }
 
   return (
@@ -38,15 +57,16 @@ export default function EmailCapture() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@brokerage.com"
-                className="flex-1 font-body text-base px-5 py-3.5 rounded-lg bg-white border border-fraction-green/20 text-text-dark placeholder-text-light/50 focus:border-fraction-green focus:ring-2 focus:ring-fraction-green/20 outline-none transition-all duration-200"
+                disabled={loading}
+                className="flex-1 font-body text-base px-5 py-3.5 rounded-lg bg-white border border-fraction-green/20 text-text-dark placeholder-text-light/50 focus:border-fraction-green focus:ring-2 focus:ring-fraction-green/20 outline-none transition-all duration-200 disabled:opacity-50"
                 aria-label="Email address"
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-2 bg-fraction-green hover:bg-fraction-green-hover active:scale-[0.97] text-white font-body font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-lg transition-all duration-200 whitespace-nowrap"
+                disabled={loading}
+                className="inline-flex items-center justify-center gap-2 bg-fraction-green hover:bg-fraction-green-hover active:scale-[0.97] text-white font-body font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-lg transition-all duration-200 whitespace-nowrap disabled:opacity-50"
               >
-                Send
-                <span aria-hidden="true">→</span>
+                {loading ? 'Sending...' : 'Send →'}
               </button>
             </div>
           </form>
@@ -55,7 +75,7 @@ export default function EmailCapture() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-fraction-green">
               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
-            <p className="font-body font-bold text-sm text-text-dark">Check your inbox. It's on its way.</p>
+            <p className="font-body font-bold text-sm text-text-dark">Your download should start automatically.</p>
           </div>
         )}
         {error && (
